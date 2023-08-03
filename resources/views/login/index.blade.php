@@ -23,7 +23,7 @@
          <form action="{{url('login')}}" method="post">
              @csrf
              <div class="input-group mb-3">
-                 <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="name@example.com" value="{{ old('email') }}" name="email" required autofocus>
+                 <input type="text" class="form-control @error('email') is-invalid @enderror" placeholder="Email / Username" value="{{ old('email') }}" name="email" required autofocus>
                  <div class="input-group-append">
                      <div class="input-group-text">
                          <span class="fas fa-envelope"></span>
