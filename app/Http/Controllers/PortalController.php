@@ -21,6 +21,7 @@ class PortalController extends Controller
             'title' => 'Portal',
             'active' => 'portal',
             'dataunitalls' => $dataunitalls,
+            'reqparam' => $this->getrequement()
         ]);
     }
     public function submenu($id, $nama)
@@ -42,23 +43,49 @@ class PortalController extends Controller
     }
 
 
-    private function getrequement($idunit)
+    private function getrequement($idunit = null)
     {
-        switch ($idunit) {
-            case '7':
-                $url_req = [
+        $getbreederdata = DB::table('users_detail')->where('username', '=', auth()->user()->username)->where('id_unit', '=', "6")->first();
+
+        if ($idunit == null) {
+            $dataarray = [
+                '7' => [
                     'identity' => auth()->user()->username,
                     'password' => Str::random(32),
                     'bypass' => 'true'
-                ];
+                ],
+                '6' => [
+                    'username' => auth()->user()->username,
+                    'password' => $getbreederdata->password,
+                ]
+            ];
+            return $dataarray;
+        } else {
+            switch ($idunit) {
+                case '7':
+                    $url_req = [
+                        'identity' => auth()->user()->username,
+                        'password' => Str::random(32),
+                        'bypass' => 'true'
+                    ];
 
-                $reqparam = http_build_query($url_req);
-                break;
+                    $reqparam = http_build_query($url_req);
+                    break;
+                case '6':
+                    $url_req = [
+                        'username' => auth()->user()->username,
+                        'password' => Str::random(32),
+                        'bypass' => 'true'
+                    ];
 
-            default:
-                $reqparam = null;
-                break;
+                    $reqparam = http_build_query($url_req);
+                    break;
+
+                default:
+                    $reqparam = null;
+                    break;
+            }
+            return $reqparam;
         }
-        return $reqparam;
     }
 }

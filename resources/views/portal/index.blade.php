@@ -20,33 +20,32 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                @foreach ($dataunitalls as $dataunitall)
-                <?php
-                $unitaccess = auth()->user()->unit;
-                $uniataccess_arr = explode(",", $unitaccess);
-                if ($dataunitall->showing_sub) {
-                    $url = "href='" . url('submenu') . "/" . $dataunitall->id  . "/" . $dataunitall->nama . "'";
-                } else {
-                    $url = "href='$dataunitall->link'";
-                }
-                if (array_search($dataunitall->id, $uniataccess_arr) !== false) {
-                    $ribbon = "<div class='ribbon bg-success'>Akses diberikan</div>";
-                } else {
-                    $url = "href='#' onclick='blockurl(`$dataunitall->nama`)'";
-                    $ribbon = "<div class='ribbon bg-danger'>Tidak ada akses</div>";
-                }
-                ?>
-                <div class="col-sm-4 mb-4">
-                    <a @php echo $url @endphp>
-                        <div class="position-relative p-3 bg-gray shadow" style="height: 180px; border-radius:16px;">
-                            <div class="ribbon-wrapper ribbon-lg">
-                                @php echo $ribbon @endphp
+                <?php foreach ($dataunitalls as $dataunitall) {
+                    $unitaccess = auth()->user()->unit;
+                    $uniataccess_arr = explode(",", $unitaccess);
+                    if (array_search($dataunitall->id, $uniataccess_arr) !== false) {
+                        if ($dataunitall->showing_sub) {
+                            $url = "href='" . url('submenu') . "/" . $dataunitall->id  . "/" . $dataunitall->nama . "'";
+                        } else {
+                            $urlraw = $dataunitall->link . "?" . http_build_query($reqparam[$dataunitall->id]);
+                            $url = "href='$urlraw'";
+                        }
+                        $ribbon = "<div class='ribbon bg-success'>Akses diberikan</div>";
+                    } else {
+                        $url = "href='#' onclick='blockurl(`$dataunitall->nama`)'";
+                        $ribbon = "<div class='ribbon bg-danger'>Tidak ada akses</div>";
+                    } ?>
+                    <div class="col-sm-4 mb-4">
+                        <a @php echo $url @endphp>
+                            <div class="position-relative p-3 bg-gray shadow" style="height: 180px; border-radius:16px;">
+                                <div class="ribbon-wrapper ribbon-lg">
+                                    @php echo $ribbon @endphp
+                                </div>
+                                {{ $dataunitall->nama }}
                             </div>
-                            {{ $dataunitall->nama }}
-                        </div>
-                    </a>
-                </div>
-                @endforeach
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>

@@ -9,19 +9,16 @@ use App\Models\User;
 
 class TestapiController extends Controller
 {
-    public function getAPIatasan($nrp)
-    {
-        $data = Http::withHeaders([
-            'Authorization' => '113|ZBWSpfldV0hdU3B5hfMc2FQIBq8jeXh51KVCa6WE'
-        ])->get('https://webportal.patria.co.id:24000/satria-api-man/public/api/sf-emp-atasan/' . $nrp);
-
-        return $data['data'];
-    }
     public function syncdatabase()
     {
         // $datauser = User::get();
         $feedmill = DB::connection('feedmill')->table('users')->get();
         $this->feedmill($feedmill);
+
+        $breeder = DB::connection('breeder')->table('tb_user')->get();
+        $this->breeder($breeder);
+
+        echo json_encode(['status' => true, 'message' => 'Sync berhasil']);
     }
     private function feedmill($feedmill)
     {
@@ -33,6 +30,7 @@ class TestapiController extends Controller
             if ($cekusername !== null) {
                 $cekdetailuser = DB::table('users_detail')
                     ->where('username', '=', $cekusername->username)
+                    ->where('id_unit', '=', "7")
                     ->first();
                 if ($cekdetailuser == null) {
                     DB::table('users_detail')->insert([
@@ -40,6 +38,30 @@ class TestapiController extends Controller
                         'id_unit' => 7,
                         'username' => $feedmills->username,
                         'password' =>  $feedmills->password,
+                        'status' =>  1
+                    ]);
+                }
+            }
+        }
+    }
+    private function breeder($breeder)
+    {
+        foreach ($breeder as $breeders) {
+            $username = $breeders->username;
+            $cekusername = User::where('username', '=', $username)
+                ->whereRaw("FIND_IN_SET('6',unit)")
+                ->first();
+            if ($cekusername !== null) {
+                $cekdetailuser = DB::table('users_detail')
+                    ->where('username', '=', $cekusername->username)
+                    ->where('id_unit', '=', "6")
+                    ->first();
+                if ($cekdetailuser == null) {
+                    DB::table('users_detail')->insert([
+                        'id_user' => $cekusername->id,
+                        'id_unit' => 6,
+                        'username' => $breeders->username,
+                        'password' =>  $breeders->password,
                         'status' =>  1
                     ]);
                 }
