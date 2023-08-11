@@ -4,22 +4,6 @@
  <div class="card">
      <div class="card-body login-card-body">
          <p class="login-box-msg">Log in to start your session</p>
-         @if(session()->has('success'))
-         <div class="alert alert-success alert-dismissible">
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-             <h5><i class="icon fas fa-check"></i></h5>
-             {{ session('success') }}
-         </div>
-         @endif
-
-         @if(session()->has('loginError'))
-         <div class="alert alert-danger alert-dismissible">
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-             <h5><i class="icon fas fa-exclamation-triangle"></i></h5>
-             {{ session('loginError') }}
-         </div>
-         @endif
-
          <form action="{{url('login')}}" method="post">
              @csrf
              <div class="input-group mb-3">

@@ -14,6 +14,8 @@
     <link rel="icon" href="{{url('assets/logodmc.png')}}" type="image/x-icon">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="{{url('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <!-- Toast bootstrap -->
+    <link rel="stylesheet" href="{{url('plugins/toastr/toastr.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{url('dist/css/adminlte.min.css')}}">
 
@@ -43,6 +45,19 @@
     <script src="{{ url('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ url('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url('dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ url('plugins/toastr/toastr.min.js') }}"></script>
+    @if(session()->has('success'))
+    <script>
+        toastr.success('{{ session("success") }}')
+    </script>
+    @endif
+
+    @if(session()->has('loginError'))
+    <script>
+        toastr.error('{{ session("loginError") }}')
+    </script>
+    @endif
+
 </body>
 
 </html>

@@ -33,6 +33,8 @@ Route::get('/', [PortalController::class, 'index'])->middleware('auth');
 Route::get('/portal', [PortalController::class, 'index'])->middleware('auth');
 Route::get('/submenu/{id}/{nama}', [PortalController::class, 'submenu'])->middleware('auth');
 
+//Home
+Route::get('/home', [PortalController::class, 'index'])->middleware('auth');
 
 //Login Method
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

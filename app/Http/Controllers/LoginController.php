@@ -40,11 +40,22 @@ class LoginController extends Controller
         ];
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/portal');
+            if (auth()->user()->unit !== null) {
+                $request->session()->regenerate();
+                return redirect()->intended('/portal');
+            } else {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return redirect('/login')->with([
+                    'loginError' => 'Hubungi admin untuk menambahkan unit!'
+                ]);
+            }
         }
 
-        return back()->with('loginError',
+        return back()->with(
+            'loginError',
             'Login failed!'
         );
     }
