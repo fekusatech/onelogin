@@ -45,7 +45,10 @@ class PortalController extends Controller
 
     private function getrequement($idunit = null)
     {
-        $getbreederdata = DB::table('users_detail')->where('username', '=', auth()->user()->username)->where('id_unit', '=', "6")->first();
+        $getbreederdata = DB::table('users_detail')
+            ->where('username', '=', auth()->user()->username)
+            ->where('id_unit', '=', "6")
+            ->first();
 
         if ($idunit == null) {
             $dataarray = [
@@ -54,11 +57,15 @@ class PortalController extends Controller
                     'password' => Str::random(32),
                     'bypass' => 'true'
                 ],
-                '6' => [
+            ];
+
+            if ($getbreederdata) {
+                $dataarray['6'] = [
                     'username' => auth()->user()->username,
                     'password' => $getbreederdata->password,
-                ]
-            ];
+                ];
+            }
+
             return $dataarray;
         } else {
             switch ($idunit) {

@@ -27,7 +27,8 @@
                         if ($dataunitall->showing_sub) {
                             $url = "href='" . url('submenu') . "/" . $dataunitall->id  . "/" . $dataunitall->nama . "'";
                         } else {
-                            $urlraw = $dataunitall->link . "?" . http_build_query($reqparam[$dataunitall->id]);
+                            $req = isset($reqparam[$dataunitall->id]) ?  http_build_query($reqparam[$dataunitall->id]) : null;
+                            $urlraw = $dataunitall->link . "?" . $req;
                             $url = "href='$urlraw'";
                         }
                         $ribbon = "<div class='ribbon bg-success'>Akses diberikan</div>";
