@@ -12,6 +12,8 @@ class TestapiController extends Controller
     public function syncdatabase()
     {
         // $datauser = User::get();
+        $cmms = DB::connection('cmms')->table('users')->get();
+        $this->cmms($cmms);
         $feedmill = DB::connection('feedmill')->table('users')->get();
         $this->feedmill($feedmill);
 
@@ -19,6 +21,31 @@ class TestapiController extends Controller
         $this->breeder($breeder);
 
         echo json_encode(['status' => true, 'message' => 'Sync berhasil']);
+    }
+    private function cmms($cmms)
+    {
+        foreach ($cmms as $cmmss) {
+            $username = $cmmss->username;
+            $cekusername = User::where('username', '=', $username)
+                ->whereRaw("FIND_IN_SET('2',unit)")
+                ->first();
+
+            if ($cekusername !== null) {
+                $cekdetailuser = DB::table('users_detail')
+                    ->where('username', '=', $cekusername->username)
+                    ->where('id_unit', '=', "2")
+                    ->first();
+                if ($cekdetailuser == null) {
+                    DB::table('users_detail')->insert([
+                        'id_user' => $cekusername->id,
+                        'id_unit' => 2,
+                        'username' => $cmmss->username,
+                        'password' =>  $cmmss->password,
+                        'status' =>  1
+                    ]);
+                }
+            }
+        }
     }
     private function feedmill($feedmill)
     {
