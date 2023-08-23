@@ -44,6 +44,15 @@
                                 </div>
                                 @endif
                                 <div class="form-group row">
+                                    <label for="inputName" class="col-sm-2 col-form-label">Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" id="inputName" name="password" placeholder="Password Baru" value="{{ Auth::user()->password }}">
+                                    </div>
+                                    @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group row">
                                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputName" name="name" placeholder="Name" value="{{ Auth::user()->name }}">
@@ -64,7 +73,7 @@
                                 <div class="form-group row">
                                     <label for="inputName2" class="col-sm-2 col-form-label">Username</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName2" name="username" placeholder="Username" value="{{ Auth::user()->username }}">
+                                        <input type="text" class="form-control" id="inputName2" name="username" placeholder="Username" value="{{ Auth::user()->username }}" readonly>
                                     </div>
                                     @error('username')
                                         <span class="text-danger">{{ $message }}</span>

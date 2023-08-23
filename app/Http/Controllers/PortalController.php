@@ -49,6 +49,10 @@ class PortalController extends Controller
             ->where('username', '=', auth()->user()->username)
             ->where('id_unit', '=', "6")
             ->first();
+        $getmitradata = DB::table('users_detail')
+            ->where('username', '=', auth()->user()->username)
+            ->where('id_unit', '=', "4")
+            ->first();
         $getcmms = DB::table('users_detail')
             ->where('username', '=', auth()->user()->username)
             ->where('id_unit', '=', "2")
@@ -81,6 +85,12 @@ class PortalController extends Controller
                     'password' => $getbreederdata->password,
                 ];
             }
+            if ($getmitradata) {
+                $dataarray['4'] = [
+                    'username' => auth()->user()->username,
+                    'password' => $getmitradata->password,
+                ];
+            }
 
             return $dataarray;
         } else {
@@ -109,6 +119,15 @@ class PortalController extends Controller
                     $url_req = [
                         'username' => auth()->user()->username,
                         'password' => "mea"
+                    ];
+
+                    $reqparam = http_build_query($url_req);
+                    break;
+                case '4': //Breeding
+                    $url_req = [
+                        'username' => auth()->user()->username,
+                        'password' => Str::random(32),
+                        'bypass' => 'true'
                     ];
 
                     $reqparam = http_build_query($url_req);

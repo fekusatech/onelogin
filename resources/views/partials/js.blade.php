@@ -5,3 +5,15 @@
 <script src="{{url('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{url('plugins/toastr/toastr.min.js')}}"></script>
 <script src="{{url('dist/js/pages/app.js')}}"></script>
+<script src="{{ url('plugins/toastr/toastr.min.js') }}"></script>
+@if(session()->has('success'))
+<script>
+    toastr.success('{{ session("success") }}')
+</script>
+@endif
+
+@if(session()->has('errormsg'))
+<script>
+    toastr.error('{{ session("loginError") }}')
+</script>
+@endif

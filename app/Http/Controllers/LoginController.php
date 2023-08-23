@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Unit;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -46,7 +47,7 @@ class LoginController extends Controller
     // }
     public function authenticate(Request $request)
     {
-        $loginField = $request->input('login_field'); // Input login field (bisa username atau email)
+        $loginField = $request->input('email'); // Input login field (bisa username atau email)
         $password = $request->input('password');
 
         // Cek apakah input adalah email
@@ -55,7 +56,6 @@ class LoginController extends Controller
         } else {
             $user = User::where('username', $loginField)->first();
         }
-
         if ($user) {
             // Jika ada pengguna dengan username atau email yang sesuai
             if ($user->password === null) {

@@ -46,6 +46,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 //Test Api
 Route::get('/testapi/{id}', [RegisterController::class, 'getAPIatasan']);
 Route::get('/syncdatabase', [TestapiController::class, 'syncdatabase']);
+Route::get('/syncsaja', [TestapiController::class, 'test']);
 
 
 

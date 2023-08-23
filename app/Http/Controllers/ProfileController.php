@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 
 class ProfileController extends Controller
@@ -22,16 +23,17 @@ class ProfileController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'password' => 'sometimes|string|min:5|max:255',
             'email' => [
                 'required',
                 'email',
                 Rule::unique('users')->ignore($user->id),
             ],
             'username' => [
+                'sometimes',
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('users')->ignore($user->id),
             ],
         ], [
             'name.required' => 'The name field is required.',
@@ -41,14 +43,15 @@ class ProfileController extends Controller
             'username.required' => 'The username field is required.',
             'username.string' => 'The username must be a string.',
             'username.max' => 'The username may not be greater than :max characters.',
-            'username.unique' => 'The username has already been taken.',
         ]);
-
+        $validatedData['password'] =  Hash::make($validatedData['password']);
         $user->update($validatedData);
 
-        return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+        return redirect()->route('profile')->with([
+            'success' => 'Berhasil update data!'
+        ]);
     }
-    public function store(Request $request){
-
+    public function store(Request $request)
+    {
     }
 }
