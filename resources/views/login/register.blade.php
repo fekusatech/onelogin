@@ -73,7 +73,7 @@
                  </div>
              </div>
          </form>
-         <small class="d-block text-center mt-3">Already have a membership? <a href="{{url('login')}}">Login Now!</a></small>
+         <small class="d-block text-center mt-3">Sudah punya akun? <a href="{{url('login')}}">Login Sekarang!</a></small>
      </div>
 
  </div>

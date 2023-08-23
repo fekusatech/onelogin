@@ -36,7 +36,7 @@
                      &nbsp;
                  </div>
              </div>
-             <small class="d-block text-center mt-3">Not registered? <a href="/register">Register Now!</a></small>
+             <small class="d-block text-center mt-3">Tidak terdaftar? <a href="/register">Daftar sekarang!</a></small>
          </form>
      </div>
      <!-- /.login-card-body -->
