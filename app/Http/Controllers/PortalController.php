@@ -64,14 +64,14 @@ class PortalController extends Controller
                     'password' => Str::random(32),
                     'bypass' => 'true'
                 ],
-                '8' => [ //Invoice
+                '2' => [ //Invoice
                     'username' => auth()->user()->username,
                     'password' => "mea",
                 ],
             ];
 
             if ($getcmms) {
-                $dataarray['2'] = [
+                $dataarray['8'] = [
                     'identity' => auth()->user()->username,
                     'password' => Str::random(32),
                     'bypass' => 'true',
@@ -95,7 +95,7 @@ class PortalController extends Controller
             return $dataarray;
         } else {
             switch ($idunit) {
-                case '2': //CMMS / Engineer
+                case '8': //CMMS / Engineer
                     $url_req = [
                         'identity' => auth()->user()->username,
                         'password' => Str::random(32),
@@ -115,7 +115,7 @@ class PortalController extends Controller
 
                     $reqparam = http_build_query($url_req);
                     break;
-                case '8': //Invoice
+                case '2': //Invoice
                     $url_req = [
                         'username' => auth()->user()->username,
                         'password' => "mea"

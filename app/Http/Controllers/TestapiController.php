@@ -11,107 +11,89 @@ class TestapiController extends Controller
 {
     public function test()
     {
-        $user = array(
-            ['id' => '1', 'nama' => 'Engineer', 'username' => 'Engineer', 'password' => '99', 'level' => 'admin', 'lokasi' => 'Balikpapan', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '6', 'nama' => 'Auzani Masqun', 'username' => 'Zani', 'password' => '123', 'level' => 'user', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '7', 'nama' => 'Teguh', 'username' => 'Teguh', 'password' => '123', 'level' => 'user', 'lokasi' => 'Tulungagung', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '8', 'nama' => '0', 'username' => '0', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '9', 'nama' => '0', 'username' => '0', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '10', 'nama' => 'Uky Agung', 'username' => 'uky_agung', 'password' => 'adreena', 'level' => 'admin', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '11', 'nama' => 'Ahmad Baharudin', 'username' => 'A_Baharudin', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '12', 'nama' => '0', 'username' => '0', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '13', 'nama' => 'Samsul Hadi', 'username' => 'Samsul_hadi', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '14', 'nama' => 'Samsul Hadi', 'username' => 'Samsul_hadi', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '16', 'nama' => 'Teguh Tri Santoso', 'username' => 'P_Teguh', 'password' => '123', 'level' => 'Trainer', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '17', 'nama' => 'Iqbal', 'username' => 'Iqbal', 'password' => '123', 'level' => 'user', 'lokasi' => 'Tulungagung', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '18', 'nama' => 'Taufiq Bayu Wijaya', 'username' => 'P_Taufiq', 'password' => '123', 'level' => 'Trainer', 'lokasi' => 'Tulungagung', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '19', 'nama' => 'Ari Sumantri', 'username' => 'P_Ari', 'password' => '123', 'level' => 'Trainer', 'lokasi' => 'Parepare', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '20', 'nama' => 'Abdul Basit', 'username' => 'Abdul_Basit', 'password' => '123', 'level' => 'user', 'lokasi' => 'Parepare', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '21', 'nama' => 'Daroni Munaji', 'username' => 'P_Daroni', 'password' => '123', 'level' => 'Trainer', 'lokasi' => 'Manado', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '22', 'nama' => 'Mario Fransisco', 'username' => 'Mario', 'password' => '123', 'level' => 'user', 'lokasi' => 'Manado', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '23', 'nama' => 'Pathurrozi', 'username' => 'P_Pathurrozi', 'password' => '123', 'level' => 'Trainer', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '24', 'nama' => 'Subeki', 'username' => 'Subeki', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '25', 'nama' => 'Hariyanto Jaenuri', 'username' => 'Hariyanto', 'password' => '123', 'level' => 'user', 'lokasi' => 'Gorontalo', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '26', 'nama' => 'Frenly Tompodung', 'username' => 'P_Frenly', 'password' => '123', 'level' => 'Trainer', 'lokasi' => 'Gorontalo', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '27', 'nama' => 'Garry Bryan Korompis', 'username' => 'P_Garry', 'password' => '123', 'level' => 'Trainer', 'lokasi' => 'Kotamobagu', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '28', 'nama' => 'Vially Lundungan', 'username' => 'Vially', 'password' => '123', 'level' => 'user', 'lokasi' => 'Kotamobagu', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '29', 'nama' => 'Musthikawaty', 'username' => 'Metty', 'password' => '999999', 'level' => 'admin', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '30', 'nama' => 'Mochamad Ainur Rovicky', 'username' => 'Vicky', 'password' => '123', 'level' => 'admin', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '31', 'nama' => 'Asma\'ul Husna', 'username' => 'husna', 'password' => '123', 'level' => 'admin', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '32', 'nama' => 'Jerry Rischa Fauzi', 'username' => 'Jerry', 'password' => '123', 'level' => 'admin', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '33', 'nama' => 'Debora Putri', 'username' => 'Putri', 'password' => '123', 'level' => 'admin', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '34', 'nama' => 'Fariz', 'username' => 'Fariz', 'password' => '123', 'level' => 'user', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '35', 'nama' => 'p', 'username' => 'p', 'password' => 'p', 'level' => 'Trainer', 'lokasi' => 'Parepare', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '36', 'nama' => 'Ismail Arif', 'username' => 'ismail_arif', 'password' => '123', 'level' => 'user', 'lokasi' => 'Gorontalo', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '37', 'nama' => 'Rahmat Hidayat', 'username' => 'Rahmat', 'password' => '123', 'level' => 'user', 'lokasi' => 'Parepare', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '38', 'nama' => 'Ulin', 'username' => 'Ulin', 'password' => '123', 'level' => 'user', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '39', 'nama' => 'Chandra', 'username' => 'Chandra', 'password' => 'chandra', 'level' => 'superuser', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '40', 'nama' => 'Dedi Apriadi', 'username' => 'Dedi', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '41', 'nama' => 'Taufik Habibi', 'username' => 'Taufik', 'password' => '123', 'level' => 'user', 'lokasi' => 'Manado', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '42', 'nama' => 'Leo', 'username' => 'Leo', 'password' => '123', 'level' => 'user', 'lokasi' => 'Manado', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '43', 'nama' => 'Yunindra ', 'username' => 'Yunindra', 'password' => 'yunindra', 'level' => 'superuser', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '44', 'nama' => 'Indi', 'username' => 'indi', 'password' => 'indi', 'level' => 'admin', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '45', 'nama' => 'Faisal Nimran', 'username' => 'Faisal_Nimran', 'password' => '110A', 'level' => 'user', 'lokasi' => 'Bima', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '46', 'nama' => 'Fakharudin', 'username' => 'Fakharudin', 'password' => '123', 'level' => 'user', 'lokasi' => 'Bima', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '47', 'nama' => 'Mursalim', 'username' => 'Mursalim', 'password' => '123', 'level' => 'user', 'lokasi' => 'Parepare', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '48', 'nama' => 'Dedi Ismawan', 'username' => 'P_Dedi', 'password' => '123', 'level' => 'user', 'lokasi' => 'Bima', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '49', 'nama' => 'Jonathan Sesa', 'username' => 'Jonathan', 'password' => '123', 'level' => 'user', 'lokasi' => 'Gorontalo', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '50', 'nama' => 'MUHAMMAD SYAMSUL HUDA', 'username' => 'Huda', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '51', 'nama' => 'RIZKY MATHEOS', 'username' => 'Rizky_', 'password' => '123', 'level' => 'admin', 'lokasi' => 'Manado', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '52', 'nama' => 'NOFSEL_K_RARES', 'username' => 'NOFSEL_K_RARES', 'password' => '123', 'level' => 'user', 'lokasi' => 'Manado', 'roll' => '1', 'user_kandang' => '\'NOFSEL_K_RARES\''],
-            ['id' => '53', 'nama' => 'febri kukuh', 'username' => 'poseidonwood', 'password' => 'putri123', 'level' => 'admin', 'lokasi' => 'Mojokerto', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '54', 'nama' => 'SUJIONO', 'username' => 'SUJIONO', 'password' => '123', 'level' => 'user', 'lokasi' => 'Tulungagung', 'roll' => '1', 'user_kandang' => '\'SUJIONO\''],
-            ['id' => '55', 'nama' => 'M_SALEH_RAHMANSYAH', 'username' => 'M_SALEH_RAHMANSYAH', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '1', 'user_kandang' => '\'M_SALEH_RAHMANSYAH\''],
-            ['id' => '56', 'nama' => 'APRILIYAWAN_HASANIA', 'username' => 'APRILIYAWAN_HASANIA', 'password' => '123', 'level' => 'user', 'lokasi' => 'Gorontalo', 'roll' => '1', 'user_kandang' => '\'APRILIYAWAN_HASANIA\''],
-            ['id' => '57', 'nama' => 'IR_HI_SONDA', 'username' => 'IR_HI_SONDA', 'password' => '123', 'level' => 'user', 'lokasi' => 'Kotamobagu', 'roll' => '1', 'user_kandang' => '\'IR_HI_SONDA\''],
-            ['id' => '58', 'nama' => 'RIJAAH', 'username' => 'RIJAAH', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '1', 'user_kandang' => '\'RIJAAH\''],
-            ['id' => '59', 'nama' => 'INDAH_SUCIANI', 'username' => 'INDAH_SUCIANI', 'password' => '123', 'level' => 'user', 'lokasi' => 'Kediri', 'roll' => '1', 'user_kandang' => '\'INDAH_SUCIANI\''],
-            ['id' => '60', 'nama' => 'MUSTARI', 'username' => 'MUSTARI', 'password' => '123', 'level' => 'user', 'lokasi' => 'Parepare', 'roll' => '1', 'user_kandang' => '\'MUSTARI\''],
-            ['id' => '61', 'nama' => 'internalaudit', 'username' => 'internalaudit', 'password' => 'iaptdmc', 'level' => 'superuser', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '62', 'nama' => '123', 'username' => '123', 'password' => '123', 'level' => 'superuser', 'lokasi' => 'Kediri', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '63', 'nama' => 'Fajar fachtur rohman', 'username' => 'Fajar', 'password' => '123', 'level' => 'user', 'lokasi' => 'Tulungagung', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '64', 'nama' => 'Rizal Pahlawan', 'username' => 'Rizal', 'password' => '123', 'level' => 'user', 'lokasi' => 'Bima', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '65', 'nama' => 'David', 'username' => 'David', 'password' => '123', 'level' => 'user', 'lokasi' => 'Balikpapan', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '66', 'nama' => 'Sardi', 'username' => 'Sardi', 'password' => '123', 'level' => 'user', 'lokasi' => 'Balikpapan', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '67', 'nama' => 'Herry', 'username' => 'P_Herry', 'password' => '123', 'level' => 'Trainer', 'lokasi' => 'Balikpapan', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '68', 'nama' => 'Rusdan Makmun', 'username' => 'Rusdan', 'password' => '123', 'level' => 'user', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '69', 'nama' => 'Harja Aryawan', 'username' => 'Harja', 'password' => '123', 'level' => 'user', 'lokasi' => 'Balikpapan', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '70', 'nama' => 'M Irfan', 'username' => 'Irfan', 'password' => '123', 'level' => 'user', 'lokasi' => 'Bima', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '71', 'nama' => 'Wahyu Pratama', 'username' => 'Wahyu', 'password' => '123', 'level' => 'admin', 'lokasi' => 'Lombok', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '72', 'nama' => 'Jordy', 'username' => 'Jordy', 'password' => '123', 'level' => 'user', 'lokasi' => 'Palu', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '73', 'nama' => 'Iswanto Gaib', 'username' => 'Iswanto', 'password' => '123', 'level' => 'user', 'lokasi' => 'Kotamobagu', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '74', 'nama' => 'Syamsudin', 'username' => 'Syamsudin', 'password' => '123', 'level' => 'user', 'lokasi' => 'Bima', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '75', 'nama' => 'Salim', 'username' => 'Salim', 'password' => '123', 'level' => 'user', 'lokasi' => 'Palu', 'roll' => '', 'user_kandang' => ''],
-            ['id' => '76', 'nama' => 'RIZKY MATHEOS', 'username' => 'Rizky', 'password' => '123', 'level' => 'user', 'lokasi' => 'Palu', 'roll' => '', 'user_kandang' => '']
+        $tb_user = array(
+            array('nama' => '123', 'username' => '123', 'password' => '123', 'level' => 'superuser', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'adi_hdc', 'username' => 'adi_hdc', 'password' => 'adi_hdc', 'level' => 'hdc', 'lokasi' => 'JOMBANG-3', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => '\'JOMBANG-3\',\'JOMBANG-4\''),
+            array('nama' => 'admin htc b', 'username' => 'admin htc b', 'password' => 'adminhtcb', 'level' => 'admin', 'lokasi' => 'HTC Balongbendo', 'bisnisunit' => 'HATCHERY', 'custom_lokasi' => ''),
+            array('nama' => 'admin htc w', 'username' => 'admin htc w', 'password' => 'adminhtcw', 'level' => 'admin', 'lokasi' => 'HTC Watudakon', 'bisnisunit' => 'HATCHERY', 'custom_lokasi' => ''),
+            array('nama' => 'admin j1', 'username' => 'admin j1', 'password' => 'adminj1', 'level' => 'admin', 'lokasi' => 'JOMBANG-1', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'Risa', 'username' => 'admin j3', 'password' => 'adminj3', 'level' => 'admin', 'lokasi' => 'JOMBANG-3', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'admin j5', 'username' => 'admin j5', 'password' => 'adminj5', 'level' => 'admin', 'lokasi' => 'JOMBANG-5', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'admin j6', 'username' => 'admin j6', 'password' => 'adminj6', 'level' => 'admin', 'lokasi' => 'JOMBANG-6', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'admin jab', 'username' => 'admin jab', 'password' => 'admin', 'level' => 'admin', 'lokasi' => 'JABUNG', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'agung_hdc', 'username' => 'agung_hdc', 'password' => 'agung_hdc', 'level' => 'hdc', 'lokasi' => 'JABUNG', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => '\'JABUNG\''),
+            array('nama' => 'Ali', 'username' => 'ali j5', 'password' => 'alij5', 'level' => 'admin', 'lokasi' => 'JOMBANG-5', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'Anggan', 'username' => 'Anggan', 'password' => '1234', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'asdianto', 'username' => 'asdianto', 'password' => 'asdianto', 'level' => 'admin', 'lokasi' => 'HTC Watudakon', 'bisnisunit' => 'HATCHERY', 'custom_lokasi' => ''),
+            array('nama' => 'Chandra', 'username' => 'chandra', 'password' => 'chandra', 'level' => 'superuser', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'christo', 'username' => 'christo', 'password' => 'christo', 'level' => 'superuser', 'lokasi' => 'JOMBANG-4', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'Conny', 'username' => 'conny j5', 'password' => 'connyj5', 'level' => 'admin', 'lokasi' => 'JOMBANG-5', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'Dika', 'username' => 'dika j3', 'password' => 'dikaj3', 'level' => 'admin', 'lokasi' => 'JOMBANG-3', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'Diki', 'username' => 'diki', 'password' => 'diki', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Eka', 'username' => 'eka', 'password' => 'eka', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Endra', 'username' => 'Endra', 'password' => 'endra', 'level' => 'superuser', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Engineer', 'username' => 'engineer', 'password' => '99', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'faisol', 'username' => 'faisol', 'password' => 'faisol', 'level' => 'superuser', 'lokasi' => 'JOMBANG-5', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'feri_hdc', 'username' => 'feri_hdc', 'password' => 'feri_hdc', 'level' => 'hdc', 'lokasi' => 'JOMBANG-5', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => '\'JOMBANG-5\''),
+            array('nama' => 'hdc j1', 'username' => 'hdc j1', 'password' => 'hdcj1', 'level' => 'hdc', 'lokasi' => 'JOMBANG-1', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => '\'JOMBANG-1\''),
+            array('nama' => 'hdc j2', 'username' => 'hdc j2', 'password' => 'hdcj2', 'level' => 'hdc', 'lokasi' => 'JOMBANG-2', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => '\'JOMBANG-2\''),
+            array('nama' => 'hdc j3', 'username' => 'hdc j3', 'password' => 'hdcj3', 'level' => 'hdc', 'lokasi' => 'JOMBANG-3', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => '\'JOMBANG-3\''),
+            array('nama' => 'hdc j4', 'username' => 'hdc j4', 'password' => 'hdcj4', 'level' => 'hdc', 'lokasi' => 'JOMBANG-4', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => '\'JOMBANG-4\''),
+            array('nama' => 'hdc j5', 'username' => 'hdc j5', 'password' => 'hdcj5', 'level' => 'hdc', 'lokasi' => 'JOMBANG-5', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => '\'JOMBANG-5\''),
+            array('nama' => 'hdc ja', 'username' => 'hdc ja', 'password' => 'hdcja', 'level' => 'hdc', 'lokasi' => 'JABUNG', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => '\'JABUNG\''),
+            array('nama' => 'hosin', 'username' => 'hosin', 'password' => 'hosin', 'level' => 'superuser', 'lokasi' => 'JOMBANG-3', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'internalaudit', 'username' => 'internalaudit', 'password' => 'iaptdmc', 'level' => 'superuser', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Ismail', 'username' => 'ismail jab', 'password' => 'ismailjab', 'level' => 'admin', 'lokasi' => 'JABUNG', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'ismoyo', 'username' => 'ismoyo', 'password' => 'ismoyo', 'level' => 'superuser', 'lokasi' => 'JOMBANG-5', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'kaka', 'username' => 'kaka j4', 'password' => 'kakaj4', 'level' => 'admin', 'lokasi' => 'JOMBANG-4', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'lukas', 'username' => 'lukas j4', 'password' => 'lukasj4', 'level' => 'admin', 'lokasi' => 'JOMBANG-4', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'Mahmudi', 'username' => 'mahmudi', 'password' => 'mahmudi', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Nasir', 'username' => 'nasir j3', 'password' => 'nasirj3', 'level' => 'admin', 'lokasi' => 'JOMBANG-3', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'poseidonwood', 'username' => 'poseidonwood', 'password' => 'putri123', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Putra', 'username' => 'putra j4', 'password' => 'putraj4', 'level' => 'admin', 'lokasi' => 'JOMBANG-4', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'rachman', 'username' => 'rachman', 'password' => 'rachman', 'level' => 'superuser', 'lokasi' => 'X', 'bisnisunit' => 'HATCHERY', 'custom_lokasi' => ''),
+            array('nama' => 'Ramadhani', 'username' => 'Ramadhani', 'password' => 'Ramadhani', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Ravi', 'username' => 'Ravi', 'password' => 'ravi', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Sena', 'username' => 'sena', 'password' => 'sena', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Sigit', 'username' => 'sigit j3', 'password' => 'sigitj3', 'level' => 'admin', 'lokasi' => 'JOMBANG-3', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'sugiharto', 'username' => 'sugiharto', 'password' => 'sugiharto', 'level' => 'superuser', 'lokasi' => 'JABUNG', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'Superuser', 'username' => 'superuser', 'password' => 'superuser', 'level' => 'superuser', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Syahri', 'username' => 'syahri jab', 'password' => 'syahrijab', 'level' => 'admin', 'lokasi' => 'JABUNG', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'Ulin', 'username' => 'ulin', 'password' => 'ulin', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Very', 'username' => 'very', 'password' => 'very', 'level' => 'engineer', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => ''),
+            array('nama' => 'Wahyu', 'username' => 'wahyu j5', 'password' => 'wahyuj5', 'level' => 'admin', 'lokasi' => 'JOMBANG-5', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => ''),
+            array('nama' => 'wahyudiono_hdc', 'username' => 'wahyudiono_hdc', 'password' => 'wahyudiono_hdc', 'level' => 'hdc', 'lokasi' => 'JABUNG', 'bisnisunit' => 'BREEDING', 'custom_lokasi' => '\'JABUNG\',\'JOMBANG-5\',\'JOMBANG-4\',\'JOMBANG-3\''),
+            array('nama' => 'yanto', 'username' => 'yanto', 'password' => 'yanto', 'level' => 'admin', 'lokasi' => 'HTC Balongbendo', 'bisnisunit' => 'HATCHERY', 'custom_lokasi' => ''),
+            array('nama' => 'Yunindra ', 'username' => 'Yunindra', 'password' => 'yunindra', 'level' => 'superuser', 'lokasi' => 'X', 'bisnisunit' => 'ADMIN', 'custom_lokasi' => '')
         );
-        $validatedData = array();
-        foreach ($user as $users) {
+
+        foreach ($tb_user as $users) {
             // echo $users['id']."<br>";?
-            $cekusername = User::where('username', '=', $users['username'])
-                ->first();
-            if ($cekusername) {
-                // echo $cekusername->id.",";
-                User::where('id', $cekusername->id)
-                    ->update([
-                        'unit' => DB::raw("CONCAT(unit, ',4')")
-                    ]);
-            }else{
-                $validatedData = [
-                    'name' => $users['nama'],
-                    'username' => strtolower($users['username']),
-                    'email' => NULL,
-                    'password' => NULL,
-                    'unit' => 4,
-                ];
+            // $cekusername = User::where('username', '=', strtolower($users['username']))
+            //     ->first();
+            // if ($cekusername) {
+            //     // echo $cekusername->id.",";
+            //     User::where('id', $cekusername->id)
+            //         ->update([
+            //             'unit' => DB::raw("CONCAT(unit, ',6')")
+            //         ]);
+            // }else{
+            //     $validatedData = [
+            //         'name' => $users['nama'],
+            //         'username' => strtolower($users['username']),
+            //         'email' => NULL,
+            //         'password' => NULL,
+            //         'unit' => 6,
+            //     ];
 
-                // Memeriksa apakah username sudah digunakan sebelumnya
-                $existingUser = User::where('username', $users['username'])->exists();
+            //     // Memeriksa apakah username sudah digunakan sebelumnya
+            //     $existingUser = User::where('username', $users['username'])->exists();
 
-                if ($existingUser) {
-                }else{
-                    // User::create($validatedData);
-                }
-            }
+            //     if ($existingUser) {
+            //     }else{
+            //         User::create($validatedData);
+            //     }
+            // }
         }
         // echo count($validatedData);
     }
@@ -159,18 +141,18 @@ class TestapiController extends Controller
         foreach ($cmms as $cmmss) {
             $username = $cmmss->username;
             $cekusername = User::where('username', '=', $username)
-                ->whereRaw("FIND_IN_SET('2',unit)")
+                ->whereRaw("FIND_IN_SET('8',unit)")
                 ->first();
 
             if ($cekusername !== null) {
                 $cekdetailuser = DB::table('users_detail')
                     ->where('username', '=', $cekusername->username)
-                    ->where('id_unit', '=', "2")
+                    ->where('id_unit', '=', "8")
                     ->first();
                 if ($cekdetailuser == null) {
                     DB::table('users_detail')->insert([
                         'id_user' => $cekusername->id,
-                        'id_unit' => 2,
+                        'id_unit' => 8,
                         'username' => $cmmss->username,
                         'password' =>  $cmmss->password,
                         'status' =>  1
