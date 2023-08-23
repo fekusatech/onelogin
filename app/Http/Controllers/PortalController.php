@@ -60,9 +60,9 @@ class PortalController extends Controller
                     'password' => Str::random(32),
                     'bypass' => 'true'
                 ],
-                '8' => [
+                '8' => [ //Invoice
                     'username' => auth()->user()->username,
-                    'password' => "mea"
+                    'password' => "mea",
                 ],
             ];
 
@@ -70,7 +70,9 @@ class PortalController extends Controller
                 $dataarray['2'] = [
                     'identity' => auth()->user()->username,
                     'password' => Str::random(32),
-                    'bypass' => 'true'
+                    'bypass' => 'true',
+                    "target" => "dashboard",
+                    "return" => url()->current()
                 ];
             }
             if ($getbreederdata) {
@@ -87,7 +89,9 @@ class PortalController extends Controller
                     $url_req = [
                         'identity' => auth()->user()->username,
                         'password' => Str::random(32),
-                        'bypass' => 'true'
+                        'bypass' => 'true',
+                        "target" => "dashboard",
+                        "return" => url()->current()
                     ];
 
                     $reqparam = http_build_query($url_req);
@@ -101,7 +105,7 @@ class PortalController extends Controller
 
                     $reqparam = http_build_query($url_req);
                     break;
-                case '8': //Feedmill
+                case '8': //Invoice
                     $url_req = [
                         'username' => auth()->user()->username,
                         'password' => "mea"
