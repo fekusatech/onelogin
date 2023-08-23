@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Unit;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -15,31 +16,59 @@ class LoginController extends Controller
             'active' => 'login'
         ]);
     }
-
     // public function authenticate(Request $request)
     // {
-    //     $credentials = $request->validate([
-    //         'email' => 'required|email:dns',
-    //         'password' => 'required'
-    //     ]);
+    //     $loginField = $request->input('email');
+    //     $credentials = [
+    //         filter_var($loginField, FILTER_VALIDATE_EMAIL) ? 'email' : 'username' => $loginField,
+    //         'password' => $request->input('password')
+    //     ];
 
     //     if (Auth::attempt($credentials)) {
-    //         $request->session()->regenerate();
-    //         return redirect()->intended('/portal');
+    //         if (auth()->user()->unit !== null) {
+    //             $request->session()->regenerate();
+    //             return redirect()->intended('/portal');
+    //         } else {
+    //             Auth::logout();
+    //             $request->session()->invalidate();
+    //             $request->session()->regenerateToken();
+
+    //             return redirect('/login')->with([
+    //                 'loginError' => 'Hubungi admin untuk menambahkan unit!'
+    //             ]);
+    //         }
     //     }
 
-    //     return back()->with('loginError', 'Login failed!');
+    //     return back()->with(
+    //         'loginError',
+    //         'Login failed!'
+    //     );
     // }
-
     public function authenticate(Request $request)
     {
-        $loginField = $request->input('email');
-        $credentials = [
-            filter_var($loginField, FILTER_VALIDATE_EMAIL) ? 'email' : 'username' => $loginField,
-            'password' => $request->input('password')
-        ];
+        $loginField = $request->input('login_field'); // Input login field (bisa username atau email)
+        $password = $request->input('password');
 
-        if (Auth::attempt($credentials)) {
+        // Cek apakah input adalah email
+        if (filter_var($loginField, FILTER_VALIDATE_EMAIL)) {
+            $user = User::where('email', $loginField)->first();
+        } else {
+            $user = User::where('username', $loginField)->first();
+        }
+
+        if ($user) {
+            // Jika ada pengguna dengan username atau email yang sesuai
+            if ($user->password === null) {
+                // Jika password di database adalah null, izinkan login tanpa password
+                Auth::login($user);
+            } elseif (Hash::check($password, $user->password)) {
+                // Jika password tidak null, verifikasi password
+                Auth::login($user);
+            }
+        }
+
+        if (Auth::check()) {
+            // Pengguna berhasil login
             if (auth()->user()->unit !== null) {
                 $request->session()->regenerate();
                 return redirect()->intended('/portal');
@@ -59,6 +88,8 @@ class LoginController extends Controller
             'Login failed!'
         );
     }
+
+
     public function logout()
     {
         Auth::logout();
