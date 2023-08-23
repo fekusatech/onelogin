@@ -7,7 +7,7 @@
          <form action="{{url('register')}}" method="post">
              @csrf
              <div class="input-group mb-3">
-                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Full name" required value="{{ old('name') }}">
+                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nama Lengkap" required value="{{ old('name') }}">
                  <div class="input-group-append">
                      <div class="input-group-text">
                          <span class="fas fa-user"></span>
@@ -21,7 +21,7 @@
              @enderror
 
              <div class="input-group mb-3">
-                 <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username" required value="{{ old('username') }}">
+                 <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username Samakan dengan appdmc" required value="{{ old('username') }}">
                  <div class="input-group-append">
                      <div class="input-group-text">
                          <span class="fas fa-users"></span>
