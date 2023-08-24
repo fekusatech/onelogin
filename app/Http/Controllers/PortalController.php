@@ -55,7 +55,7 @@ class PortalController extends Controller
             ->first();
         $getcmms = DB::table('users_detail')
             ->where('username', '=', auth()->user()->username)
-            ->where('id_unit', '=', "2")
+            ->where('id_unit', '=', "8")
             ->first();
         if ($idunit == null) {
             $dataarray = [

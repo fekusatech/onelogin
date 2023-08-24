@@ -35,7 +35,8 @@
                     } else {
                         $url = "href='#' onclick='blockurl(`$dataunitall->nama`)'";
                         $ribbon = "<div class='ribbon bg-danger'>Tidak ada akses</div>";
-                    } ?>
+                    } 
+                ?>
                     <div class="col-sm-4 mb-4">
                         <a @php echo $url @endphp>
                             <div class="position-relative p-3 bg-gray shadow" style="height: 180px; border-radius:16px;">
