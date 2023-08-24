@@ -36,7 +36,7 @@
     <div class="login-box">
         <div class="login-logo">
             <div class="login-logo">
-                <b>DMC </b> {{ $title }}
+                <b>OneLogin | </b> {{ $title }}
             </div>
         </div>
         @yield('container')
