@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestapiController;
+use App\Http\Controllers\ManageUserController;
 use App\Models\Unit;
 
 /*
@@ -26,6 +27,12 @@ use App\Models\Unit;
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
 // Route::put('/profile/update', [ProfileController::class, 'update'])->middleware('auth');
 Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+//Management
+Route::get('/manage-user', [ManageUserController::class, 'index'])->middleware('auth');
+
+
+
 
 //Portal
 Route::get('/', [PortalController::class, 'index'])->middleware('auth');

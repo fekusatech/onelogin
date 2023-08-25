@@ -11,4 +11,20 @@
     <link rel="shortcut icon" href="{{url('assets/logodmc-icon.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{url('dist/css/adminlte.min.css?v=3.2.0')}}">
     <link rel="stylesheet" href="{{url('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+
+    <link rel="stylesheet" href="{{url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+    <link href="{{url('plugins/editable/editable.css')}}" rel="stylesheet" />
+    <style>
+        .table td {
+            padding: 0.3rem;
+            font-size: 12px;
+        }
+
+        .table th {
+            font-size: 12px;
+        }
+    </style>
+
 </head>
