@@ -37,11 +37,13 @@ class LoginController extends Controller
                 // Jika password tidak null, verifikasi password
                 Auth::login($user);
             }
+            // Update kolom last_login
+            $user->update(['last_login' => date('Y-m-d H:i:s')]);
         }
 
         if (Auth::check()) {
             // Pengguna berhasil login
-            if(auth()->user()->ban === "ban"){
+            if (auth()->user()->ban === "ban") {
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
@@ -51,6 +53,7 @@ class LoginController extends Controller
             }
 
             if (auth()->user()->unit !== null) {
+
                 $request->session()->regenerate();
                 return redirect()->intended('/portal');
             } else {
