@@ -41,6 +41,15 @@ class LoginController extends Controller
 
         if (Auth::check()) {
             // Pengguna berhasil login
+            if(auth()->user()->ban === "ban"){
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect('/login')->with([
+                    'loginError' => 'Akun anda diban! Hubungi admin!'
+                ]);
+            }
+
             if (auth()->user()->unit !== null) {
                 $request->session()->regenerate();
                 return redirect()->intended('/portal');
