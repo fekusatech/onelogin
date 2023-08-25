@@ -11,7 +11,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{url('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Favicon -->
-    <link rel="icon" href="{{url('assets/logodmc.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{url('assets/logodmc-icon.png')}}" type="image/x-icon">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="{{url('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- Toast bootstrap -->
