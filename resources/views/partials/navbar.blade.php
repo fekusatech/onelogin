@@ -8,7 +8,7 @@
         </div>
 
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-comments"></i>
                     <span class="badge badge-danger navbar-badge">3</span>
@@ -91,7 +91,7 @@
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
-            </li>
+            </li> -->
             <li class="nav-item dropdown">
                 <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Profile</a>
                 <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">

@@ -17,34 +17,6 @@ class LoginController extends Controller
             'active' => 'login'
         ]);
     }
-    // public function authenticate(Request $request)
-    // {
-    //     $loginField = $request->input('email');
-    //     $credentials = [
-    //         filter_var($loginField, FILTER_VALIDATE_EMAIL) ? 'email' : 'username' => $loginField,
-    //         'password' => $request->input('password')
-    //     ];
-
-    //     if (Auth::attempt($credentials)) {
-    //         if (auth()->user()->unit !== null) {
-    //             $request->session()->regenerate();
-    //             return redirect()->intended('/portal');
-    //         } else {
-    //             Auth::logout();
-    //             $request->session()->invalidate();
-    //             $request->session()->regenerateToken();
-
-    //             return redirect('/login')->with([
-    //                 'loginError' => 'Hubungi admin untuk menambahkan unit!'
-    //             ]);
-    //         }
-    //     }
-
-    //     return back()->with(
-    //         'loginError',
-    //         'Login failed!'
-    //     );
-    // }
     public function authenticate(Request $request)
     {
         $loginField = $request->input('email'); // Input login field (bisa username atau email)
