@@ -84,6 +84,10 @@ class PortalController extends Controller
                     'username' => auth()->user()->username,
                     'password' => $getbreederdata->password,
                 ];
+                $dataarray['5'] = [
+                    'username' => auth()->user()->username,
+                    'password' => $getbreederdata->password,
+                ];
             }
             if ($getmitradata) {
                 $dataarray['4'] = [
@@ -133,6 +137,15 @@ class PortalController extends Controller
                     $reqparam = http_build_query($url_req);
                     break;
                 case '6': //Breeding
+                    $url_req = [
+                        'username' => auth()->user()->username,
+                        'password' => Str::random(32),
+                        'bypass' => 'true'
+                    ];
+
+                    $reqparam = http_build_query($url_req);
+                    break;
+                case '5': //HTC
                     $url_req = [
                         'username' => auth()->user()->username,
                         'password' => Str::random(32),
