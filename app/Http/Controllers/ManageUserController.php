@@ -9,10 +9,14 @@ use App\Models\User;
 use App\Models\Unit;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\RoleValidationTrait;
+use App\Traits\SendWhatsapp;
+use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 
 class ManageUserController extends Controller
 {
     use RoleValidationTrait;
+    use SendWhatsapp;
 
     public function index()
     {
@@ -63,5 +67,52 @@ class ManageUserController extends Controller
             $password = $request->value == NULL ? $request->value : Hash::make($request->value);
             User::where('id', $request->id)->update(['password' => $password]);
         }
+    }
+    public function requestotp(Request $request)
+    {
+        $datenow = Carbon::now();
+        $customExpiresAt = Carbon::now()->addMinutes(1); // Token kedaluwarsa dalam 12 menit
+        $token = strval(random_int(1000, 9999));
+        if ($request->number == NULL || $request->number == "") {
+            $responseJson = [
+                "status" => false,
+                "msg" => [
+                    "number" => "Invalid value" // Properti "number" tidak selalu ada
+                ]
+            ];
+            return json_encode($responseJson);
+        }
+
+        $cekdata = DB::table('otp_verifications')->where([
+            'user_id' => $request->id,
+            'number' => $request->number,
+            'is_verified' => '0'
+        ])->first();
+        if ($cekdata) {
+            if ($datenow->greaterThan($cekdata->expired_at)) {
+                //Update verified ke 3 
+                DB::table('otp_verifications')
+                    ->where('id', $cekdata->id)
+                    ->update(['is_verified' => 3]);
+
+                DB::table('otp_verifications')->insert([
+                    'user_id' => $request->id,
+                    'number' => $request->number,
+                    'otp_code' => $token,
+                    'expired_at' => $customExpiresAt
+                ]);
+                return $this->sendotp($request->number, $token, "ubah");
+            } else {
+                return json_encode(['status' => false, 'msg' => $datenow->diffInSeconds($cekdata->expired_at)]);
+            }
+        }
+
+        DB::table('otp_verifications')->insert([
+            'user_id' => $request->id,
+            'number' => $request->number,
+            'otp_code' => $token,
+            'expired_at' => $customExpiresAt
+        ]);
+        return $this->sendotp($request->number, $token, "ubah");
     }
 }

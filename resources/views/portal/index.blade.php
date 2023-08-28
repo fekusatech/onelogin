@@ -11,6 +11,13 @@
                     Password anda belum diset. Klik link ini untuk ganti pasword <a href="{{url('profile')}}">Ganti Password</a>
                 </div>
             <?php } ?>
+            <?php if (auth()->user()->number == null) { ?>
+                <div class="alert alert-info alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-info"></i> Notifikasi!</h5>
+                    Nomor HP anda belum diset. Klik link ini untuk menambahkan No HP <a href="{{url('profile')}}">Set No HP</a>
+                </div>
+            <?php } ?>
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1 class="m-0">

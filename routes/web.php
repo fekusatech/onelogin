@@ -28,6 +28,7 @@ use App\Models\Unit;
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
 // Route::put('/profile/update', [ProfileController::class, 'update'])->middleware('auth');
 Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+Route::put('/profile/nohp', [ProfileController::class, 'update_nohp'])->name('profile.nohp')->middleware('auth');
 
 //Management
 Route::get('/manage-user', [ManageUserController::class, 'index'])->middleware('auth');

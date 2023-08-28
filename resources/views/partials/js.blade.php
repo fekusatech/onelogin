@@ -17,6 +17,57 @@
 <script src="{{url('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{url('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <script src="{{url('plugins/editable/editable.js')}}"></script>
+<script>
+    function kirimotp(id) {
+        var number = $("#numberphone").val();
+        $.ajax({
+            type: "POST",
+            url: "/api/otprequest",
+            data: {
+                id: id,
+                number: number
+            },
+            dataType: "JSON",
+            success: function(response) {
+                console.log(response);
+                if (response.status) {
+                    toastr.success('OTP Berhasil dikirim. Cek Whatsapp Anda');
+                    startcountdown();
+                } else {
+                    if (response.msg.number !== undefined) {
+                        toastr.error('Pastikan anda menginput nomor HP dengan benar')
+                    } else {
+                        toastr.error('Mohon menunggu selama ' + response.msg + " detik");
+                        startcountdown(response.msg);
+                    }
+                }
+            }
+        });
+    }
+
+    function startcountdown(start) {
+        var button = $("#buttonotp");
+        var seconds;
+        if (start == undefined || start == null) {
+            seconds = 60;
+        } else {
+            seconds = start;
+        } // Durasi countdown dalam detik
+        button.prop("disabled", true); // Menonaktifkan tombol
+        button.text(seconds + " detik");
+
+        var countdownInterval = setInterval(function() {
+            if (seconds <= 0) {
+                button.text("Kirim OTP"); // Mengembalikan teks tombol
+                button.prop("disabled", false); // Mengaktifkan tombol kembali
+                clearInterval(countdownInterval); // Menghentikan countdown
+            } else {
+                button.text(seconds + " detik");
+                seconds--;
+            }
+        }, 1000);
+    }
+</script>
 @if(session()->has('success'))
 <script>
     toastr.success('{{ session("success") }}')
@@ -26,11 +77,6 @@
 @if(session()->has('error'))
 <script>
     toastr.error('{{ session("error") }}')
-</script>
-@endif
-@if(session()->has('success'))
-<script>
-    toastr.success('{{ session("success") }}')
 </script>
 @endif
 

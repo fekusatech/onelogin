@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -25,9 +25,7 @@ class ProfileController extends Controller
                 'name' => 'required|string|max:255',
                 'password' => 'sometimes|string|min:5|max:255',
                 'email' => [
-                    'required',
-                    'email',
-                    Rule::unique('users')->ignore($user->id),
+                    'sometimes',
                 ],
                 'username' => [
                     'sometimes',
@@ -37,7 +35,6 @@ class ProfileController extends Controller
                 ],
             ], [
                 'name.required' => 'The name field is required.',
-                'email.required' => 'The email field is required.',
                 'email.email' => 'Please enter a valid email address.',
                 'email.unique' => 'The email has already been taken.',
                 'username.required' => 'The username field is required.',
@@ -49,9 +46,7 @@ class ProfileController extends Controller
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => [
-                    'required',
-                    'email',
-                    Rule::unique('users')->ignore($user->id),
+                    'sometimes',
                 ],
                 'username' => [
                     'sometimes',
@@ -61,7 +56,6 @@ class ProfileController extends Controller
                 ],
             ], [
                 'name.required' => 'The name field is required.',
-                'email.required' => 'The email field is required.',
                 'email.email' => 'Please enter a valid email address.',
                 'email.unique' => 'The email has already been taken.',
                 'username.required' => 'The username field is required.',
@@ -71,6 +65,34 @@ class ProfileController extends Controller
         }
         $user->update($validatedData);
 
+        return redirect()->route('profile')->with([
+            'success' => 'Berhasil update data!'
+        ]);
+    }
+    public function update_nohp(Request $request)
+    {
+        $user = Auth::user();
+        $validatedData = $request->validate([
+            'numberphone' => 'required|string|max:255',
+            'otp' => 'required|string|min:4|max:4',
+        ], [
+            'numberphone.required' => 'No HP wajib diisi',
+            'otp.required' => 'OTP wajib diisi',
+        ]);
+        $cekdata = DB::table('otp_verifications')->where([
+            'user_id' => auth()->user()->id,
+            'number' => $validatedData['numberphone'],
+            'otp_code' => $validatedData['otp']
+        ])->first();
+        if (!$cekdata) {
+            return redirect()->route('profile')->with([
+                'error' => 'OTP anda salah silahkan coba lagi'
+            ]);
+        }
+        DB::table('otp_verifications')
+            ->where('id', $cekdata->id)
+            ->update(['is_verified' => 2]);
+        $user->update(['number' => $validatedData['numberphone']]);
         return redirect()->route('profile')->with([
             'success' => 'Berhasil update data!'
         ]);

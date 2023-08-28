@@ -4,6 +4,16 @@
     <div class="pt-5"></div>
     <div class="content">
         <div class="container">
+
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="row">
                 <div class="col-md-3">
                     <!-- {"id":1,"username":"poseidonwood","name":"poseidonwood","email":"admin@admin.com","email_verified_at":null,"unit":"7","sub_unit":null,"foto":null,"created_at":"2023-06-22T04:01:26.000000Z","updated_at":"2023-06-22T04:01:26.000000Z" -->
@@ -31,21 +41,47 @@
                 </div>
 
                 <div class="col-md-9">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <form class="form-horizontal" method="post" action="{{ route('profile.nohp') }}">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-group row">
+                                    <label for="inputName" class="col-sm-2 col-form-label">Nomor HP</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="numberphone" name="numberphone" placeholder="081234XXXXX" value="{{ auth()->user()->number }}">
+                                    </div>
+                                    @error('numberphone')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputName" class="col-sm-2 col-form-label">Kirim OTP</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="inputName" name="otp" placeholder="1234">
+                                            <span class="input-group-append">
+                                                <button type="button" class="btn btn-info btn-flat" id="buttonotp" onclick="kirimotp(`{{auth()->user()->id}}`)">Kirim OTP</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    @error('otp')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="card-body">
                             <form class="form-horizontal" method="post" action="{{ route('profile.update') }}">
                                 @csrf
                                 @method('PUT')
-
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                @endif
                                 <?php if (auth()->user()->password == null) { ?>
                                     <div class="form-group row">
                                         <label for="inputName" class="col-sm-2 col-form-label">Password</label>
