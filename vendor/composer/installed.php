@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => 'v8.6.12',
-        'version' => '8.6.12.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '5b7b80b956115eaff73e08193b2e21813538cfea',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -145,6 +145,15 @@
             'reference' => '783a74f5e3431d7b9805be8afb60fd0a8f743534',
             'type' => 'library',
             'install_path' => __DIR__ . '/../fruitcake/laravel-cors',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'google/recaptcha' => array(
+            'pretty_version' => '1.2.4',
+            'version' => '1.2.4.0',
+            'reference' => '614f25a9038be4f3f2da7cbfd778dc5b357d2419',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../google/recaptcha',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -395,9 +404,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'v8.6.12',
-            'version' => '8.6.12.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '5b7b80b956115eaff73e08193b2e21813538cfea',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -730,8 +739,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(

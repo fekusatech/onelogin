@@ -8,6 +8,8 @@ use App\Models\Unit;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Validator;
+
 class LoginController extends Controller
 {
     public function index()
@@ -19,6 +21,17 @@ class LoginController extends Controller
     }
     public function authenticate(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'g-recaptcha-response' => 'required|recaptcha'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/login')->with([
+                'loginError' => 'Pastikan anda memilih Recaptcha',
+            ]);
+        }
+
+
         $loginField = $request->input('email'); // Input login field (bisa username atau email)
         $password = $request->input('password');
 

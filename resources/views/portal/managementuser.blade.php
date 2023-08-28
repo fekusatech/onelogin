@@ -25,7 +25,6 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($userlist as $userlists) {
-                                    // <a href="#" id="username" data-type="text" data-pk="1" data-title="Enter username" class="editable editable-click">superuser</a>
                                     $ban = "<a href='#' data-name='status' class='status' data-type='select' data-pk='ban' data-value='{$userlists->ban}' data-url='/api/update-user/{$userlists->id}/ban' data-title='Banned'><p>" . strtoupper($userlists->ban) . "</p></a>";
                                     $role = "<a href='#' data-name='rolelist' class='rolelist' data-type='select' data-pk='rolelist' data-value='{$userlists->role}' data-url='/api/update-user/{$userlists->id}/rolelist' data-title='rolelist'></a>";
                                     $emailbutton = "<a href='#' class='email' data-type='text' data-value='$userlists->email' data-pk='email' data-name='email' data-url='/api/update-user/{$userlists->id}/email' data-title='Enter email'></a>";
@@ -35,7 +34,7 @@
                                     $passwordbutton = "<a href='#' class='password' data-type='text' data-value='$userlists->password' data-pk='password' data-name='password' data-url='/api/update-user/{$userlists->id}/password' data-title='Enter Password'>$password</a>";
                                 ?>
                                     <tr>
-                                        <td>{{$userlists->username}}</td>
+                                        <td>{{$userlists->username}}<br><small>Last Login : <?= date('d M Y H:i', strtotime($userlists->last_login)) ?></small></td>
                                         <td><?= $name ?></td>
                                         <td><?= $emailbutton ?></td>
                                         <td><?= $ban ?></td>

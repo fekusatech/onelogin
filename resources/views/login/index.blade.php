@@ -28,6 +28,8 @@
                      </div>
                  </div>
              </div>
+             <div class="g-recaptcha mb-2" data-sitekey="{{ config('app.recaptcha_site_key') }}"></div>
+
              <div class="row">
                  <div class="col-4 text-start">
                      <button type="submit" class="btn btn-sm btn-primary btn-block">Log In</button>
