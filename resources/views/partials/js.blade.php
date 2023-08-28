@@ -5,7 +5,6 @@
 <script src="{{url('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{url('plugins/toastr/toastr.min.js')}}"></script>
 <script src="{{url('dist/js/pages/app.js')}}"></script>
-<script src="{{url('plugins/toastr/toastr.min.js')}}"></script>
 
 
 <script src="{{url('plugins/datatables/jquery.dataTables.min.js')}}"></script>
@@ -24,6 +23,17 @@
 </script>
 @endif
 
+@if(session()->has('error'))
+<script>
+    toastr.error('{{ session("error") }}')
+</script>
+@endif
+@if(session()->has('success'))
+<script>
+    toastr.success('{{ session("success") }}')
+</script>
+@endif
+
 @if(session()->has('errormsg'))
 <script>
     toastr.error('{{ session("loginError") }}')
@@ -32,7 +42,19 @@
 <?php if (isset($unitlist)) { ?>
     <script>
         $(function() {
-            $("#example2").DataTable({
+            <?php foreach ($unitlist as $unitlists) {
+                $id = str_replace(" ", "_", strtolower($unitlists->nama)); ?>
+                $("#<?= $id ?>-table").DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true
+                });
+            <?php } ?>
+            $("#user-table").DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
@@ -62,6 +84,7 @@
             }
         });
         $('.unitlist').editable({
+            <?= auth()->user()->role == 3 ? "disabled: true," : null ?>
             pk: 'unit',
             source: [
                 <?php
@@ -75,7 +98,23 @@
                 } ?>
             ]
         });
+        $('.unit_control').editable({
+            <?= auth()->user()->role == 3 ? "disabled: true," : null ?>
+            pk: 'unit_control',
+            source: [
+                <?php
+                $count = 1;
+                $totalmax = count($unitlist);
+                foreach ($unitlist as $unitlists) {
+                    echo "{value: " . $unitlists->id . ", text: '" . $unitlists->nama . "'}";
+                    if ($count++ < $totalmax) {
+                        echo ",";
+                    }
+                } ?>
+            ]
+        });
         $('.rolelist').editable({
+            <?= auth()->user()->role == 3 ? "disabled: true," : null ?>
             pk: 'role',
             showbuttons: false,
             source: [

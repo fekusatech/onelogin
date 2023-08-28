@@ -26,4 +26,5 @@ Route::post('/update-user/{id}/unit', [ManageUserController::class, 'update']);
 Route::post('/update-user/{id}/name', [ManageUserController::class, 'update']);
 Route::post('/update-user/{id}/rolelist', [ManageUserController::class, 'update']);
 Route::post('/update-user/{id}/password', [ManageUserController::class, 'update']);
+Route::post('/update-user/{id}/unit_control', [ManageUserController::class, 'update']);
 // Route::post('/admin-box/{id}/change-status', 'Admin\BoxController@change_status');

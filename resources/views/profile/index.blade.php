@@ -18,7 +18,10 @@
                                     <b>Username</b> <a class="float-right">{{ Auth::user()->username }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Email</b> <a class="float-right">{{ Auth::user()->email }}</a>
+                                    <b>Email</b> <small><a class="float-right">{{ Auth::user()->email }}</a></small>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Role</b><a class="float-right">{{ Auth::user()->role }}</a>
                                 </li>
                             </ul>
                         </div>

@@ -92,12 +92,12 @@
                     <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
             </li> -->
-            <?php if (auth()->user()->role == "1") { ?>
+            <?php if (auth()->user()->role == "1" || auth()->user()->role == "3") { ?>
                 <li class="nav-item dropdown">
-                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Management</a>
+                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Management User</a>
                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                        <li><a href="{{url('manage-user')}}" class="dropdown-item">User</a></li>
-                        <li><a href="{{url('manage-unit')}}" class="dropdown-item">Unit</a></li>
+                        <li><a href="{{url('manage-user')}}" class="dropdown-item">User Portal</a></li>
+                        <li><a href="{{url('manage-unit')}}" class="dropdown-item">User Unit</a></li>
                     </ul>
                 </li>
             <?php } ?>

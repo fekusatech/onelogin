@@ -11,6 +11,7 @@ use App\Http\Controllers\PortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestapiController;
 use App\Http\Controllers\ManageUserController;
+use App\Http\Controllers\ManageUnitController;
 use App\Models\Unit;
 
 /*
@@ -30,8 +31,7 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 
 //Management
 Route::get('/manage-user', [ManageUserController::class, 'index'])->middleware('auth');
-
-
+Route::get('/manage-unit', [ManageUnitController::class, 'index'])->middleware('auth');
 
 
 //Portal

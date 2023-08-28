@@ -10,7 +10,6 @@
         @include('partials.footer')
     </div>
     @include('partials.js')
-    <!-- <script src="{{url('dist/js/demo.js')}}"></script> -->
 </body>
 
 </html>

@@ -11,7 +11,7 @@
                         <h3 class="card-title">Managemen User</h3>
                     </div>
                     <div class="card-body">
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="user-table" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Username</th>
@@ -20,6 +20,7 @@
                                     <th>Status Ban</th>
                                     <th>Role</th>
                                     <th>Unit</th>
+                                    <th>Unit Control</th>
                                     <th>Reset Pass</th>
                                 </tr>
                             </thead>
@@ -32,6 +33,7 @@
                                     $name = "<a href='#' class='firstname' data-type='text' data-pk='firstname' data-placement='right' data-url='/api/update-user/{$userlists->id}/name' data-value='{$userlists->name}' data-placeholder='Required' data-title='Enter your name'></a>";
                                     $password = $userlists->password == null ? "Null" : "Ada password";
                                     $passwordbutton = "<a href='#' class='password' data-type='text' data-value='$userlists->password' data-pk='password' data-name='password' data-url='/api/update-user/{$userlists->id}/password' data-title='Enter Password'>$password</a>";
+                                    $unitcontrol = "<a href='#' data-name='unit_control' class='unit_control' data-type='select' data-pk='unit_control' data-value='{$userlists->unit_control}' data-url='/api/update-user/{$userlists->id}/unit_control' data-title='unit_control'></a>";
                                 ?>
                                     <tr>
                                         <td>{{$userlists->username}}<br><small>Last Login : <?= date('d M Y H:i', strtotime($userlists->last_login)) ?></small></td>
@@ -40,6 +42,7 @@
                                         <td><?= $ban ?></td>
                                         <td><?= $role ?></td>
                                         <td><?= $unitrawnew ?></td>
+                                        <td><?= $unitcontrol ?></td>
                                         <td><?= $passwordbutton ?></td>
                                     </tr>
                                 <?php } ?>
