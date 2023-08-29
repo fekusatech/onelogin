@@ -27,6 +27,7 @@ Route::post('/update-user/{id}/name', [ManageUserController::class, 'update']);
 Route::post('/update-user/{id}/rolelist', [ManageUserController::class, 'update']);
 Route::post('/update-user/{id}/password', [ManageUserController::class, 'update']);
 Route::post('/update-user/{id}/unit_control', [ManageUserController::class, 'update']);
+Route::post('/update-user/{id}/number', [ManageUserController::class, 'update']);
 
 //OTP api
 Route::post('/otprequest', [ManageUserController::class, 'requestotp']);

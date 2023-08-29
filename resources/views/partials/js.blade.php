@@ -20,12 +20,18 @@
 <script>
     function kirimotp(id) {
         var number = $("#numberphone").val();
+        var oldnumber = $("#oldnumberphone").val();
+        if (number == oldnumber) {
+            toastr.error("Nomor ini sama dengan nomor sebelumnya")
+            return false;
+        }
         $.ajax({
             type: "POST",
             url: "/api/otprequest",
             data: {
                 id: id,
-                number: number
+                number: number,
+                oldnumber: oldnumber
             },
             dataType: "JSON",
             success: function(response) {
@@ -35,7 +41,7 @@
                     startcountdown();
                 } else {
                     if (response.msg.number !== undefined) {
-                        toastr.error('Pastikan anda menginput nomor HP dengan benar')
+                        toastr.error(response.msg.number)
                     } else {
                         toastr.error('Mohon menunggu selama ' + response.msg + " detik");
                         startcountdown(response.msg);
@@ -123,6 +129,7 @@
             ]
         });
         $('.email').editable();
+        $('.number').editable();
         $('.password').editable();
         $('.firstname').editable({
             validate: function(value) {

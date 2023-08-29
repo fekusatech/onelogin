@@ -50,6 +50,8 @@
                                     <label for="inputName" class="col-sm-2 col-form-label">Nomor HP</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="numberphone" name="numberphone" placeholder="081234XXXXX" value="{{ auth()->user()->number }}">
+                                        <input type="hidden" class="form-control" id="oldnumberphone" name="oldnumberphone" value="{{ auth()->user()->number }}">
+
                                     </div>
                                     @error('numberphone')
                                     <span class="text-danger">{{ $message }}</span>

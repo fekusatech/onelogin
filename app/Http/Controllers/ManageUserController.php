@@ -54,6 +54,8 @@ class ManageUserController extends Controller
             User::where('id', $request->id)->update(['ban' => $request->value]);
         if ($request->pk == "email")
             User::where('id', $request->id)->update(['email' => $request->value]);
+        if ($request->pk == "number")
+            User::where('id', $request->id)->update(['number' => $request->value]);
         if ($request->pk == "unit")
             User::where('id', $request->id)->update(['unit' => implode(",", $request->value)]);
         if ($request->pk == "firstname")
@@ -77,7 +79,16 @@ class ManageUserController extends Controller
             $responseJson = [
                 "status" => false,
                 "msg" => [
-                    "number" => "Invalid value" // Properti "number" tidak selalu ada
+                    "number" => "Pastikan anda menginput nomor HP dengan benar" // Properti "number" tidak selalu ada
+                ]
+            ];
+            return json_encode($responseJson);
+        }
+        if ($request->number == $request->oldnumber) {
+            $responseJson = [
+                "status" => false,
+                "msg" => [
+                    "number" => "Nomor yang anda gunakan sama dengan sebelumnya" // Properti "number" tidak selalu ada
                 ]
             ];
             return json_encode($responseJson);
