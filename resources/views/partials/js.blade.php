@@ -58,7 +58,7 @@
             seconds = 60;
         } else {
             seconds = start;
-        } // Durasi countdown dalam detik
+        } 
         button.prop("disabled", true); // Menonaktifkan tombol
         button.text(seconds + " detik");
 

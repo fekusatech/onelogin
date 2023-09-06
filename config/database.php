@@ -143,6 +143,19 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+        'brdmanado' => [
+            'driver' => 'mysql',
+            'host' => '193.168.194.192',
+            'port' => '3306',
+            'database' => 'u1734578_breeding_manado',
+            'username' => 'u1734578_breeding_manado',
+            'password' => 'u1734578_breeding_manado',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
 
     ],
 

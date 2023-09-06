@@ -100,14 +100,16 @@ class TestapiController extends Controller
     public function syncdatabase()
     {
         // $datauser = User::get();
-        $mitra = DB::connection('mitra')->table('user')->get();
-        $this->mitra($mitra);
-        $cmms = DB::connection('cmms')->table('users')->get();
-        $this->cmms($cmms);
-        $feedmill = DB::connection('feedmill')->table('users')->get();
-        $this->feedmill($feedmill);
-        $breeder = DB::connection('breeder')->table('tb_user')->get();
-        $this->breeder($breeder);
+        // $mitra = DB::connection('mitra')->table('user')->get();
+        // $this->mitra($mitra);
+        // $cmms = DB::connection('cmms')->table('users')->get();
+        // $this->cmms($cmms);
+        // $feedmill = DB::connection('feedmill')->table('users')->get();
+        // $this->feedmill($feedmill);
+        // $breeder = DB::connection('breeder')->table('tb_user')->get();
+        // $this->breeder($breeder);
+        $brdmanado = DB::connection('brdmanado')->table('tb_user')->get();
+        $this->brdmanado($brdmanado);
 
         echo json_encode(['status' => true, 'message' => 'Sync berhasil']);
     }
@@ -203,6 +205,30 @@ class TestapiController extends Controller
                         'id_unit' => 6,
                         'username' => $breeders->username,
                         'password' =>  $breeders->password,
+                        'status' =>  1
+                    ]);
+                }
+            }
+        }
+    }
+    private function brdmanado($brdmanado)
+    {
+        foreach ($brdmanado as $brdmanados) {
+            $username = $brdmanados->username;
+            $cekusername = User::where('username', '=', $username)
+                ->whereRaw("FIND_IN_SET('9',unit)")
+                ->first();
+            if ($cekusername !== null) {
+                $cekdetailuser = DB::table('users_detail')
+                    ->where('username', '=', $cekusername->username)
+                    ->where('id_unit', '=', "9")
+                    ->first();
+                if ($cekdetailuser == null) {
+                    DB::table('users_detail')->insert([
+                        'id_user' => $cekusername->id,
+                        'id_unit' => 9,
+                        'username' => $brdmanados->username,
+                        'password' =>  $brdmanados->password,
                         'status' =>  1
                     ]);
                 }
