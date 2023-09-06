@@ -96,7 +96,7 @@ class PortalController extends Controller
             if ($getbrdmanadodata) {
                 $dataarray['9'] = [
                     'username' => auth()->user()->username,
-                    'password' => $getbreederdata->password,
+                    'password' => $getbrdmanadodata->password,
                 ];
             }
             if ($getmitradata) {
