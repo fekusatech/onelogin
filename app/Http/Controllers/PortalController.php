@@ -61,6 +61,10 @@ class PortalController extends Controller
             ->where('username', '=', auth()->user()->username)
             ->where('id_unit', '=', "8")
             ->first();
+        $getrpa = DB::table('users_detail')
+            ->where('username', '=', auth()->user()->username)
+            ->where('id_unit', '=', "3")
+            ->first();
         if ($idunit == null) {
             $dataarray = [
                 '7' => [
@@ -76,6 +80,15 @@ class PortalController extends Controller
 
             if ($getcmms) {
                 $dataarray['8'] = [
+                    'identity' => auth()->user()->username,
+                    'password' => Str::random(32),
+                    'bypass' => 'true',
+                    "target" => "dashboard",
+                    "return" => url()->current()
+                ];
+            }
+            if ($getrpa) {
+                $dataarray['3'] = [
                     'identity' => auth()->user()->username,
                     'password' => Str::random(32),
                     'bypass' => 'true',
@@ -109,6 +122,17 @@ class PortalController extends Controller
             return $dataarray;
         } else {
             switch ($idunit) {
+                case '3': //CMMS / Engineer
+                    $url_req = [
+                        'identity' => auth()->user()->username,
+                        'password' => Str::random(32),
+                        'bypass' => 'true',
+                        "target" => "dashboard",
+                        "return" => url()->current()
+                    ];
+
+                    $reqparam = http_build_query($url_req);
+                    break;
                 case '8': //CMMS / Engineer
                     $url_req = [
                         'identity' => auth()->user()->username,
