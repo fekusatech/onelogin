@@ -89,11 +89,8 @@ class PortalController extends Controller
             }
             if ($getrpa) {
                 $dataarray['3'] = [
-                    'identity' => auth()->user()->username,
-                    'password' => Str::random(32),
-                    'bypass' => 'true',
-                    "target" => "dashboard",
-                    "return" => url()->current()
+                    'username' => auth()->user()->username,
+                    'status' => 'true',
                 ];
             }
             if ($getbreederdata) {
@@ -124,11 +121,8 @@ class PortalController extends Controller
             switch ($idunit) {
                 case '3': //CMMS / Engineer
                     $url_req = [
-                        'identity' => auth()->user()->username,
-                        'password' => Str::random(32),
-                        'bypass' => 'true',
-                        "target" => "dashboard",
-                        "return" => url()->current()
+                        'username' => auth()->user()->username,
+                        'status' => 'true',
                     ];
 
                     $reqparam = http_build_query($url_req);
