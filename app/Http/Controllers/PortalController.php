@@ -65,6 +65,11 @@ class PortalController extends Controller
             ->where('username', '=', auth()->user()->username)
             ->where('id_unit', '=', "3")
             ->first();
+        $getwork = DB::table('users_detail')
+            ->where('username', '=', auth()->user()->username)
+            ->where('id_unit', '=', "1")
+            ->first();
+
         if ($idunit == null) {
             $dataarray = [
                 '7' => [
@@ -85,6 +90,12 @@ class PortalController extends Controller
                     'bypass' => 'true',
                     "target" => "dashboard",
                     "return" => url()->current()
+                ];
+            }
+            if ($getwork) {
+                $dataarray['1'] = [
+                    'email' => $getwork->email,
+                    'password' => $getwork->password,
                 ];
             }
             if ($getrpa) {
@@ -187,6 +198,14 @@ class PortalController extends Controller
                         'username' => auth()->user()->username,
                         'password' => Str::random(32),
                         'bypass' => 'true'
+                    ];
+
+                    $reqparam = http_build_query($url_req);
+                    break;
+                case '1': //Work
+                    $url_req = [
+                        'email' => auth()->user()->username,
+                        'password' => Str::random(32),
                     ];
 
                     $reqparam = http_build_query($url_req);
