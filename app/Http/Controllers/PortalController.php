@@ -26,6 +26,9 @@ class PortalController extends Controller
     }
     public function submenu($id, $nama)
     {
+        $datauserdetail  = DB::table('users_detail')
+            ->where('id_user', '=', auth()->user()->id)
+            ->get();
         $datamenu = DB::table('list_sub_unit')
             ->join('list_unit', 'list_unit.id', '=', 'list_sub_unit.id_unit')
             ->select('list_sub_unit.*', 'list_unit.link as base_url', 'list_unit.link_login as login_url')
@@ -37,6 +40,7 @@ class PortalController extends Controller
             'title' => 'Submenu',
             'active' => 'submenu',
             'unit_nm' => $nama,
+            'datauser' => $datauserdetail,
             'datamenus' => $datamenu,
             'reqparam' => $this->getrequement($id)
         ]);

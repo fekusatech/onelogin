@@ -9,6 +9,7 @@
         </aside>
         @include('partials.footer')
     </div>
+    @include('partials.modal')
     @include('partials.js')
 </body>
 

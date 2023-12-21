@@ -25,8 +25,20 @@
             <div class="row">
                 @foreach ($datamenus as $datamenu)
                 <?php
-                $link = $datamenu->login_url . "?" . $reqparam . "&target={$datamenu->link}";
-
+                if ($datamenu->linkfull == null) {
+                    $link = $datamenu->login_url . "?" . $reqparam . "&target={$datamenu->link}";
+                } else {
+                    $datausersnya = [];
+                    foreach ($datauser as $datausers) {
+                        if ($datausers->id_unit == $datausers->id_unit) {
+                            $datausersnya = $datausers;
+                        }
+                    }
+                    $link = $datamenu->linkfull;
+                    if (!is_array($datausersnya)) {
+                        $link = $link . "?username={$datausersnya->username}&email={$datausersnya->email}&password={$datausersnya->password}";
+                    }
+                }
                 ?>
                 <div class="col-sm-4 mb-4">
                     <!-- <a href="#" onclick="alerttoast(`Masih dalam pengembangan`)"> -->

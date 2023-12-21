@@ -58,7 +58,7 @@
             seconds = 60;
         } else {
             seconds = start;
-        } 
+        }
         button.prop("disabled", true); // Menonaktifkan tombol
         button.text(seconds + " detik");
 
@@ -103,7 +103,20 @@
                     "ordering": true,
                     "info": true,
                     "autoWidth": false,
-                    "responsive": true
+                    "responsive": true,
+                    "buttons": [{
+                        text: '<i class="fas fa-plus"></i> Tambah Data',
+                        className: 'btn btn-primary btn-sm btn-add',
+                        action: function(e, dt, node, config) {
+                            $('.btn-add')
+                                .attr('data-toggle', 'modal')
+                                .attr('data-target', '#modal-default-<?= $id ?>');
+                        }
+                    }],
+                    initComplete: function() {
+                        this.api().buttons().container()
+                            .appendTo($('.col-md-6:eq(0)', this.api().table().container()));
+                    },
                 });
             <?php } ?>
             $("#user-table").DataTable({
